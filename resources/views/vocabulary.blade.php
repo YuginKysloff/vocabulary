@@ -6,7 +6,8 @@
         <h1 class="page__title">Vocabulary list</h1>
         <p class="page__desc">You should just select type of algorithm in line of desired word and press encode button.</p>
     </header>
-    <form action="" method="post">
+    <form action="{{ route('vocabulary') }}" method="post">
+        {{ csrf_field() }}
         <table class="table">
             <thead class="table__head">
                 <tr class="table__tr">
@@ -22,14 +23,14 @@
                         <td class="table__td">{{ $word->id }}</td>
                         <td class="table__td">{{ $word->word }}</td>
                         <td class="table__td">
-                            <select class="select">
+                            <select name="select{{ $word->id }}" class="select">
                                 <option value="0" selected disabled>none</option>
                                 @foreach($algorithms as $algorithm)
                                     <option value="{{ $algorithm->id }}">{{ $algorithm->name }}</option>
                                 @endforeach
                             </select>
                         </td>
-                        <td class="table__td"><input class="input__submit" type="submit" name="{{ $word->id }}" value="Encode"></td>
+                        <td class="table__td"><input class="input__submit" type="submit" name="submit{{ $word->id }}" value="Encode"></td>
                     </tr>
                 @endforeach
             </tbody>

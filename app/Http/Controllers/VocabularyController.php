@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Word;
 use App\Algorithm;
 
-class HomeController extends Controller
+class VocabularyController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -19,16 +19,27 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the vocabulary list.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getVocabulary()
     {
         $data['vocabulary'] = Word::paginate(10);
 
         $data['algorithms'] = Algorithm::all();
 
-        return view('home', $data);
+        return view('vocabulary', $data);
+    }
+
+    /**
+     * Show hash of selected word.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getHash()
+    {
+
+        return view('hash');
     }
 }

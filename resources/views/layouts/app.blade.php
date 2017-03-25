@@ -24,7 +24,7 @@
     <header class="header">
         <div class="header__wrapper">
             <div class="header__logo">
-                <a href="{{ route('home') }}"><strong>{{ strtoupper(config('app.name', 'Vocabulary')) }}</strong></a>
+                <a href="{{ route('vocabulary') }}"><strong>{{ strtoupper(config('app.name', 'Vocabulary')) }}</strong></a>
             </div>
             @if (Auth::user())
                 <nav class="header__nav">
