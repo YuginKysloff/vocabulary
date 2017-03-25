@@ -37,8 +37,9 @@ class VocabularyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getHash()
+    public function getHash(Request $request)
     {
+//        dump($request);
 
         return view('hash');
     }
