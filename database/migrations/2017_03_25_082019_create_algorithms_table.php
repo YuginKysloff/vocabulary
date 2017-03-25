@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHashesTable extends Migration
+class CreateAlgorithmsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateHashesTable extends Migration
      */
     public function up()
     {
-        Schema::create('hashes', function (Blueprint $table) {
+        Schema::create('algorithms', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('hash', 50);
+            $table->string('name', 50);
         });
     }
 
@@ -26,6 +26,6 @@ class CreateHashesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hashes');
+        Schema::dropIfExists('algorithms');
     }
 }

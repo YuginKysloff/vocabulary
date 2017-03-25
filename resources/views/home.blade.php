@@ -24,8 +24,8 @@
                         <td class="table__td">
                             <select class="select">
                                 <option value="0" selected disabled>none</option>
-                                @foreach($hashes as $hash)
-                                    <option value="{{ $hash->id }}">{{ $hash->hash }}</option>
+                                @foreach($algorithms as $algorithm)
+                                    <option value="{{ $algorithm->id }}">{{ $algorithm->name }}</option>
                                 @endforeach
                             </select>
                         </td>

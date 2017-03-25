@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Word;
-use App\Hash;
+use App\Algorithm;
 
 class HomeController extends Controller
 {
@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         $data['vocabulary'] = Word::paginate(10);
 
-        $data['hashes'] = Hash::all();
+        $data['algorithms'] = Algorithm::all();
 
         return view('home', $data);
     }

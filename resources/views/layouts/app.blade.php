@@ -30,12 +30,12 @@
                 <nav class="header__nav">
                     <ul>
                         <li>
-                            <a href="#">{{ ucfirst(Auth::user()->name) }}</a>
+                            <a href="#" title="Get your favorites words">{{ ucfirst(Auth::user()->name) }}</a>
                         </li>
                         <li>
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
+                        document.getElementById('logout-form').submit();" title="Leave the application">
                                 Logout
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

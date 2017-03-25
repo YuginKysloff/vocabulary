@@ -15,7 +15,7 @@
             </header>
             <p class="welcome__desc">
                 Hi, Guys!
-                I glad represent to you solution of encoding any words to few type of hashes.<br>
+                We glad represent to you solution of encoding any words to few type of hashes.<br>
                 To start you should <strong><a href="{{ url('/login') }}" class="welcome__link">Login</a></strong> or
                 <strong><a href="{{ url('/register') }}" class="welcome__link">Register</a></strong>.
             </p>
