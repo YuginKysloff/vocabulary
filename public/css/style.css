@@ -1,0 +1,227 @@
+/*Global styles*/
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color:gray;
+}
+
+/*welcome page*/
+
+.welcome__wrapper{
+    width: 70%;
+    margin: 50px auto;
+    border: 1px solid lightcoral;
+    border-radius: 5px;
+    padding: 60px;
+}
+
+.welcome__title, .page__title, .welcome__desc {
+    color:red;
+    text-align: center;
+}
+
+.welcome__text, .welcome__link {
+    font-size: 18px;
+}
+
+.welcome__link {
+    text-decoration: none;
+    color:red;
+}
+
+.welcome__link:hover {
+    color:darkred;
+}
+
+/*App layout header*/
+
+.header {
+    width: 100%;
+    padding: 15px 0;
+    background-color: lightgray;
+}
+
+.header__wrapper {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.header__logo {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.header__logo a {
+    color:red;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.header__logo a:hover {
+    color:darkred;
+}
+
+.header__nav {
+    float:right;
+    margin-right: 15px;
+}
+
+.header__nav ul {
+    margin: 0;
+}
+
+.header__nav li {
+    display: inline-block;
+    padding: 0 10px;
+    color:red;
+}
+
+.header__nav li a {
+    color:red;
+    text-decoration: none;
+}
+
+.header__nav li a:hover {
+    color:darkred;
+}
+
+/*App layout footer*/
+
+.footer{
+    width: 100%;
+    background-color: lightgray;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.footer__text {
+    color:red;
+    font-size: 12px;
+    margin: 0;
+}
+
+/*Auth pages*/
+
+.auth__form {
+    width: 50%;
+    margin: 100px auto;
+}
+
+.auth__label {
+    color:red;
+}
+
+.auth__input {
+    width: 100%;
+    height: 25px;
+    margin-bottom: 20px;
+}
+
+.auth__button {
+    width: 100%;
+    height: 35px;
+    margin-bottom: 15px;
+    color: gray;
+    font-size: 18px;
+}
+
+.auth__link {
+    text-decoration: none;
+    color:red;
+}
+
+.auth__link:hover {
+    color:darkred;
+}
+
+/*vocabulary list*/
+
+.page__wrapper {
+    width: 70%;
+    margin: 20px auto;
+    border: 1px solid lightcoral;
+    border-radius: 5px;
+}
+
+.page__title {
+    color:red;
+    text-align: center;
+}
+
+.page__desc {
+    color:red;
+    text-align: center;
+}
+
+.table {
+    width: 95%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.table__head {
+    background-color: lightgray;
+}
+
+.table__td:nth-of-type(2){
+    padding-left: 30px;
+    text-align: left;
+}
+
+.table__td {
+    padding: 10px 0;
+    border-bottom: 1px solid lightgray;
+    text-align: center;
+}
+
+.select {
+    width: 60%;
+    height: 30px;
+    border: 1px solid lightgray;
+    color:gray;
+}
+
+.input__submit {
+    width: 60%;
+    height: 30px;
+    border: 1px solid lightgray;
+    color:gray;
+}
+
+.input__submit:hover {
+    background-color: lightgray;
+    color:white;
+}
+
+/*Pagination*/
+
+.pagination {
+    position: relative;
+    list-style: none;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding-left: 0;
+}
+
+.pagination li {
+    display: inline-block;
+    margin:2px;
+    padding:5px 10px;
+    color:gray;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
+
+.pagination li a {
+    color:gray;
+}
+
+.pagination li a:hover {
+    color:darkred;
+}
+
+main {
+    min-height: calc(100vh - 135px);
+}
