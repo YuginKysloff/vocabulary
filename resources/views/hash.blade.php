@@ -4,7 +4,7 @@
 <div class="page__wrapper">
     <header>
         <h1 class="page__title">Hash of selected word</h1>
-        <p class="page__desc">You can store result for later use.</p>
+        <p class="page__desc" id="qwe">You can store results for later use.</p>
     </header>
     <table class="table">
         <thead class="table__head">
@@ -16,15 +16,17 @@
                 <th class="table__td">Operation</th>
             </tr>
         </thead>
-        <tbody class="table__body">
+        <tbody class="table__body results__block">
             @if(is_array($result))
                 @foreach($result as $key => $item)
-                    <tr class="table__tr">
+                    <tr class="table__tr"   data-word_id="{{ $item['word']['id'] }}"
+                                            data-algorithm_id="{{ $item['algorithm']['id'] }}"
+                                            data-hash="{{ $item['hash'] }}">
                         <td class="table__td">{{ $key }}</td>
                         <td class="table__td">{{ $item['word']['word'] }}</td>
                         <td class="table__td">{{ $item['algorithm']['name'] }}</td>
                         <td class="table__td">{{ $item['hash'] }}</td>
-                        <td class="table__td"><a href="/hash/save/{{ $item['word']['id'] }}/{{ $item['algorithm']['id'] }}/{{ $item['hash'] }}">Save</a></td>
+                        <td class="table__td" id="answer{{ $item['word']['id'] }}">Save</td>
                     </tr>
                 @endforeach
             @else

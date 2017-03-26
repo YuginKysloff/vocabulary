@@ -26,3 +26,6 @@ Route::post('/hash', 'VocabularyController@getHash')->name('hash');
 
 // Save selected hash
 Route::get('/hash/save/{word_id}/{algorithm_id}/{hash}', 'VocabularyController@saveHash');
+
+
+Route::post('/hash/save', 'VocabularyController@saveHash');

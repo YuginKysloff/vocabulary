@@ -53,6 +53,7 @@
     <footer class="footer">
         <p class="footer__text">All right reserved &#169; {{ date('Y') }}</p>
     </footer>
-    <script src=""></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>
