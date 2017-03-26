@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use App\Word;
 use App\Algorithm;
 use App\Hash;
@@ -18,7 +17,7 @@ class VocabularyController extends Controller
      */
     public function __construct()
     {
-//        $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -75,23 +74,25 @@ class VocabularyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-//    public function saveHash($word_id, $algorithm_id, $hash)
-//    {
-//        Hash::create([
-//            'user_id' => Auth::user()->id,
-//            'word_id' => $word_id,
-//            'algorithm_id' => $algorithm_id,
-//            'hash' => $hash
-//        ]);
-//
-//        echo 'Hash saved';
-//
-//    }
-
     public function saveHash(Request $request)
     {
-        return response()->json([
-            'word_id' => $request->word_id
+        Hash::create([
+            'user_id' => Auth::user()->id,
+            'word_id' => $request->word_id,
+            'algorithm_id' => $request->algorithm_id,
+            'hash' => $request->hash
         ]);
+
+        return response()->json(['word_id' => $request->word_id]);
+    }
+
+    /**
+     * Get current user's stored words.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAccount($id)
+    {
+        echo 'ok';
     }
 }

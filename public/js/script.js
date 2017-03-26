@@ -1,12 +1,16 @@
-$('.results__block').on('click', '.table__tr', function () {
+function saveWord(word_id, algorithm_id, hash) {
     $.ajax({
         url: '/hash/save',
-        data: {'_token':$('meta[name=csrf-token]').attr('content'),
-            'word_id':$(this).data('word_id')},
+        cache: false,
+        data: {
+            '_token': $('meta[name=csrf-token]').attr('content'),
+            'word_id': word_id,
+            'algorithm_id': algorithm_id,
+            'hash': hash
+        },
         type: "POST",
         success: function (data) {
-            alert(data['word_id']);
-            $('#answer'+data['word_id']).html('Ok');
+            $('#answer' + data['word_id']).html('Ok');
         }
     });
-});
+}
