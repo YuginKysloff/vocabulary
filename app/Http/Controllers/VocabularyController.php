@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Word;
 use App\Algorithm;
 use App\Hash;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class VocabularyController extends Controller
 {
@@ -77,7 +77,7 @@ class VocabularyController extends Controller
     public function saveHash(Request $request)
     {
         Hash::create([
-            'user_id' => Auth::user()->id,
+            'user_id' => auth()->user()->id,
             'word_id' => $request->word_id,
             'algorithm_id' => $request->algorithm_id,
             'hash' => $request->hash
@@ -93,6 +93,19 @@ class VocabularyController extends Controller
      */
     public function getAccount($id)
     {
-        echo 'ok';
+//        $data['result'] = Hash::where('user_id', $id)->get();
+
+        $data = DB::table('hashes')->
+                    select('vocabulary.word', 'algorithms.name as algorithm', 'hashes.hash')->
+                    join('vocabulary', 'hashes.word_id', '=', 'vocabulary.id')->
+                    join('algorithms', 'hashes.algorithm_id', '=', 'algorithms.id')->
+                    where('hashes.user_id', $id)->
+                    get();
+
+        if(count($data) > 0) {
+            return view('account', ['result' => response()->json($data)]);
+        } else {
+            return view('account', ['result' => 'No results']);
+        }
     }
 }

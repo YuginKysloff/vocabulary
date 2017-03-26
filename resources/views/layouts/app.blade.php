@@ -30,7 +30,7 @@
                 <nav class="header__nav">
                     <ul>
                         <li>
-                            <a href="{{ route('account', ['id' => Auth::user()->id]) }}" title="Get your favorites words">{{ ucfirst(Auth::user()->name) }}</a>
+                            <a href="{{ route('account', ['id' => auth()->user()->id]) }}" title="Get your favorites words">{{ ucfirst(auth()->user()->name) }}</a>
                         </li>
                         <li>
                             <a href="{{ route('logout') }}"
