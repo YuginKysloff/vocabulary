@@ -93,8 +93,6 @@ class VocabularyController extends Controller
      */
     public function getAccount($id)
     {
-//        $data['result'] = Hash::where('user_id', $id)->get();
-
         $data = DB::table('hashes')->
                     select('vocabulary.word', 'algorithms.name as algorithm', 'hashes.hash')->
                     join('vocabulary', 'hashes.word_id', '=', 'vocabulary.id')->
@@ -102,10 +100,6 @@ class VocabularyController extends Controller
                     where('hashes.user_id', $id)->
                     get();
 
-        if(count($data) > 0) {
-            return view('account', ['result' => response()->json($data)]);
-        } else {
-            return view('account', ['result' => 'No results']);
-        }
+        return (count($data) > 0) ? view('account', ['result' => response()->json($data)]) : view('account', ['result' => 'No results']);
     }
 }

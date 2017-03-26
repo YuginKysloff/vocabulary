@@ -25,7 +25,7 @@
                         <td class="table__td">{{ $item['algorithm']['name'] }}</td>
                         <td class="table__td">{{ $item['hash'] }}</td>
                         <td class="table__td" id="answer{{ $item['word']['id'] }}">
-                            <button onclick="saveWord({{ $item['word']['id'] }}, {{ $item['algorithm']['id'] }}, '{{ $item['hash'] }}')">
+                            <button class="save-button" onclick="saveWord({{ $item['word']['id'] }}, {{ $item['algorithm']['id'] }}, '{{ $item['hash'] }}')">
                                 Save
                             </button>
                         </td>

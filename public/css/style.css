@@ -175,9 +175,17 @@ body {
     background-color: lightgray;
 }
 
-.table__td:nth-of-type(2){
+.table__td:nth-of-type(2), .table__td:nth-of-type(4){
     padding-left: 30px;
     text-align: left;
+}
+
+.table__td:first-of-type{
+    width: 4%;
+}
+
+.table__td:nth-of-type(5){
+    width: 9%;
 }
 
 .table__td {
@@ -210,6 +218,13 @@ body {
 .input__submit:hover {
     background-color: lightgray;
     color:lightcoral;
+}
+
+.save-button {
+    width: 60%;
+    height: 25px;
+    margin: 0 auto;
+    border: 1px solid lightgray;
 }
 
 /*Pagination*/

@@ -4,7 +4,8 @@
 <div class="page__wrapper">
     <header>
         <h1 class="page__title">Vocabulary list</h1>
-        <p class="page__desc">To start encoding you should just select algorithm in line of desired word and press encode button.</p>
+        <p class="page__desc">To start encoding select algorithm in line of desired word and press encode button.</p>
+        <p class="page__desc">To see your favorite words click on your name in upper menu.</p>
     </header>
     <form action="{{ route('hash') }}" method="post">
         {{ csrf_field() }}
