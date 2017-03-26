@@ -155,7 +155,7 @@ body {
 }
 
 .table {
-    width: 95%;
+    width: 90%;
     margin: 20px auto;
     border-collapse: collapse;
 }
@@ -182,17 +182,23 @@ body {
     color:gray;
 }
 
+.submit__wrapper {
+    text-align: center;
+}
+
 .input__submit {
-    width: 60%;
-    height: 30px;
+    width: 50%;
+    height: 40px;
+    margin: 10px auto;
     border: 1px solid lightgray;
-    font-size: 14px;
-    color:gray;
+    font-size: 16px;
+    font-weight: bold;
+    color:red;
 }
 
 .input__submit:hover {
     background-color: lightgray;
-    color:white;
+    color:lightcoral;
 }
 
 /*Pagination*/

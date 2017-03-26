@@ -11,11 +11,18 @@
 |
 */
 
+// Welcome page
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
 
+// Vocabulary list
 Route::get('/vocabulary', 'VocabularyController@getVocabulary')->name('vocabulary');
-Route::post('/vocabulary', 'VocabularyController@getHash');
+
+// Results list
+Route::post('/hash', 'VocabularyController@getHash')->name('hash');
+
+// Save selected hash
+Route::get('/hash/save/{word_id}/{algorithm_id}/{hash}', 'VocabularyController@saveHash');
