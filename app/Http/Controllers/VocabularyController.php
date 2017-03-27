@@ -91,15 +91,22 @@ class VocabularyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getAccount($id)
+    public function getAccount(Request $request, $id)
     {
-        $data = DB::table('hashes')->
+        $hashes = DB::table('hashes')->
                     select('vocabulary.word', 'algorithms.name as algorithm', 'hashes.hash')->
                     join('vocabulary', 'hashes.word_id', '=', 'vocabulary.id')->
                     join('algorithms', 'hashes.algorithm_id', '=', 'algorithms.id')->
                     where('hashes.user_id', $id)->
                     get();
 
-        return (count($data) > 0) ? view('account', ['result' => response()->json($data)]) : view('account', ['result' => 'No results']);
+        $data['result']['hashes'] = (count($hashes) > 0) ? response()->json($hashes) : 'No results';
+        $data['result']['ip'] = $request->ip();
+        $data['result']['userAgent'] = $request->server('HTTP_USER_AGENT');
+//        $data['result']['userAgent'] = get_browser(null, true);
+
+        return view('account', $data);
+
+//        return (count($hashes) > 0) ? view('account', ['result' => response()->json($hashes)]) : view('account', ['result' => 'No results']);
     }
 }
