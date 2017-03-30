@@ -43,6 +43,7 @@ class Kernel extends ConsoleKernel
                     'user' => $user->name,
                     'user_ip' => $user->ip,
                     'user_agent' => $user->user_agent,
+                    'country' => $user->country,
                     'vocabulary' => $hashes
                 ];
 

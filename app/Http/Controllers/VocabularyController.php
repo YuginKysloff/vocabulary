@@ -111,27 +111,14 @@ class VocabularyController extends Controller
                     get();
 
         $data['result']['hashes'] = (count($hashes) > 0) ? response()->json($hashes) : 'No results';
-        $data['result']['ip'] = $request->ip();
-        $data['result']['userAgent'] = $request->server('HTTP_USER_AGENT');
         $data['result']['country'] = DB::table('ip2nationCountries')->
                                         select('country')->
                                         where('code', $this->getCountryCodeFromIp($request->ip()))->
                                         first();
+        $data['result']['request'] = $request;
 
 //        $data['result']['userAgent'] = get_browser(null, true);
 
         return view('account', $data);
-    }
-
-    public function getCountryCodeFromIp($ip)
-    {
-        $result = DB::table('ip2nationCountries as c')->
-                        select('c.code')->
-                        join('ip2nation AS i', 'c.code', '=', 'i.country')->
-                        where('i.ip', '<', DB::raw('INET_ATON("'.$ip.'")'))->
-                        orderBy('i.ip', 'DESC')->
-                        first();
-
-        return (is_object($result)) ? $result->code : null;
     }
 }
