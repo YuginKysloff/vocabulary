@@ -25,7 +25,7 @@ Route::get('/vocabulary', 'VocabularyController@getVocabulary')->name('vocabular
 Route::post('/hash', 'VocabularyController@getHash')->name('hash');
 
 // Save selected hash
-Route::post('/hash/save', 'VocabularyController@saveHash');
+Route::get('/hash/save/{string}/{algorithm}/{hash}', 'VocabularyController@saveHash')->name('save');
 
 // Get current user's stored words.
-Route::get('/account/{id}', 'VocabularyController@getAccount')->name('account');
+Route::get('/account', 'VocabularyController@getAccount')->name('account');

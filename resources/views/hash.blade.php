@@ -9,7 +9,7 @@
     <table class="table">
         <thead class="table__head">
             <tr class="table__tr">
-                <th class="table__td">#</th>
+                {{--<th class="table__td">#</th>--}}
                 <th class="table__td">Word</th>
                 <th class="table__td">Algorithm</th>
                 <th class="table__td">Hash</th>
@@ -18,19 +18,16 @@
         </thead>
         <tbody class="table__body results__block">
             @if(is_array($result))
-                @foreach($result as $key => $item)
-                    <tr class="table__tr">
-                        <td class="table__td">{{ $key }}</td>
-                        <td class="table__td">{{ $item['word']['word'] }}</td>
-                        <td class="table__td">{{ $item['algorithm']['name'] }}</td>
-                        <td class="table__td">{{ $item['hash'] }}</td>
-                        <td class="table__td" id="answer{{ $item['word']['id'] }}">
-                            <button class="save-button" onclick="saveWord({{ $item['word']['id'] }}, {{ $item['algorithm']['id'] }}, '{{ $item['hash'] }}')">
-                                Save
-                            </button>
-                        </td>
-                    </tr>
-                @endforeach
+                <tr class="table__tr">
+                    <td class="table__td">{{ $result['string'] }}</td>
+                    <td class="table__td">{{ $result['algorithm']['name'] }}</td>
+                    <td class="table__td">{{ $result['hash'] }}</td>
+                    <td class="table__td" id="answer">
+                        <a class="save-button" href="{{ route('save', ['string' => $result['string'], 'algorithm' => $result['algorithm']['name'], 'hash' => $result['hash']]) }}">
+                            Save
+                        </a>
+                    </td>
+                </tr>
             @else
                 <tr class="table__tr">
                     <td class="table__td" colspan="5">{{ $result }}</td>

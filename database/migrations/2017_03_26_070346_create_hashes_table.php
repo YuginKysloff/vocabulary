@@ -16,8 +16,8 @@ class CreateHashesTable extends Migration
         Schema::create('hashes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('word_id')->unsigned();
-            $table->integer('algorithm_id')->unsigned();
+            $table->string('string', 255);
+            $table->string('algorithm', 10);
             $table->string('hash',255);
         });
     }

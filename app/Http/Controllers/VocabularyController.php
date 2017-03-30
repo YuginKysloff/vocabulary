@@ -44,24 +44,15 @@ class VocabularyController extends Controller
     public function getHash(Request $request)
     {
         // Check for results
-        if(is_array($request->selection))
+        if(is_array($request->selection) && $request->algorithm)
         {
-            // Init result counter
-            $count = 1;
-            foreach($request->selection as $key => $item)
-            {
-                // Get word and algorithm by id
-                $word = Word::findOrFail($key)->word;
-                $alg = Algorithm::findOrFail($item)->name;
+            $data['result']['string'] = '';
+            foreach($request->selection as $item) $data['result']['string'] .= $item;
 
-                // Organise result array
-                $data['result'][$count]['word']['id'] = $key;
-                $data['result'][$count]['word']['word'] = $word;
-                $data['result'][$count]['algorithm']['id'] = $item;
-                $data['result'][$count]['algorithm']['name'] = $alg;
-                $data['result'][$count]['hash'] = hash($alg, $word);
-                $count++;
-            }
+            $data['result']['algorithm']['code'] = $request->algorithm;
+            $data['result']['algorithm']['name'] = Algorithm::findOrFail($request->algorithm)->name;
+            $data['result']['hash'] = hash($data['result']['algorithm']['name'], $data['result']['string']);
+
         } else {
             $data['result'] = 'No results';
         }
@@ -74,14 +65,14 @@ class VocabularyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function saveHash(Request $request)
+    public function saveHash(Request $request, $string, $algorithm, $hash)
     {
         // Save favorite word to DB
         Hash::create([
             'user_id' => auth()->user()->id,
-            'word_id' => $request->word_id,
-            'algorithm_id' => $request->algorithm_id,
-            'hash' => $request->hash
+            'string' => $string,
+            'algorithm' => $algorithm,
+            'hash' => $hash
         ]);
 
         //Save to DB user's information
@@ -93,7 +84,7 @@ class VocabularyController extends Controller
                 'country' => $this->getCountryCodeFromIp($request->ip())
             ]);
 
-        return response()->json(['word_id' => $request->word_id]);
+        return redirect()->route('account');
     }
 
     /**
@@ -101,14 +92,9 @@ class VocabularyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getAccount(Request $request, $id)
+    public function getAccount(Request $request)
     {
-        $hashes = DB::table('hashes')->
-                    select('vocabulary.word', 'algorithms.name as algorithm', 'hashes.hash')->
-                    join('vocabulary', 'hashes.word_id', '=', 'vocabulary.id')->
-                    join('algorithms', 'hashes.algorithm_id', '=', 'algorithms.id')->
-                    where('hashes.user_id', $id)->
-                    get();
+        $hashes = Hash::select('string', 'algorithm', 'hash')->where('user_id', auth()->user()->id)->get();
 
         $data['result']['hashes'] = (count($hashes) > 0) ? response()->json($hashes) : 'No results';
         $data['result']['country'] = DB::table('ip2nationCountries')->

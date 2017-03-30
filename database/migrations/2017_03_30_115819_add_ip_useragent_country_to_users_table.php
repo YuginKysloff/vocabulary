@@ -14,9 +14,9 @@ class AddIpUseragentCountryToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('ip', 15)->after('password');
-            $table->string('user_agent', 255)->after('ip');;
-            $table->string('country', 3)->after('user_agent');;
+            $table->string('ip', 15)->after('password')->default('');
+            $table->string('user_agent', 255)->after('ip')->default('');
+            $table->string('country', 3)->after('user_agent')->default('');
         });
     }
 
