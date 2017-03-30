@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Word;
 use App\Algorithm;
 use App\Hash;
+use App\User;
 use Illuminate\Support\Facades\DB;
+use Spatie\ArrayToXml\ArrayToXml;
+use Illuminate\Support\Facades\Storage;
 
 class VocabularyController extends Controller
 {
@@ -32,6 +35,20 @@ class VocabularyController extends Controller
 
         // Get algorithm list
         $data['algorithms'] = Algorithm::all();
+
+        $users = User::all();
+        foreach($users as $user)
+        {
+            $hashes = Hash::
+            select('vocabulary.word', 'algorithms.name as algorithm', 'hashes.hash')->
+            join('vocabulary', 'hashes.word_id', '=', 'vocabulary.id')->
+            join('algorithms', 'hashes.algorithm_id', '=', 'algorithms.id')->
+            where('hashes.user_id', $user->id)->
+            get()->keyBy('word')->toArray();
+
+            $result = ArrayToXml::convert($hashes);
+            Storage::disk('local')->put($user->name.'.xml', $result);
+        }
 
         return view('vocabulary', $data);
     }
@@ -76,12 +93,16 @@ class VocabularyController extends Controller
      */
     public function saveHash(Request $request)
     {
+        // Save favorite word to DB
         Hash::create([
             'user_id' => auth()->user()->id,
             'word_id' => $request->word_id,
             'algorithm_id' => $request->algorithm_id,
             'hash' => $request->hash
         ]);
+
+        //Save to DB user's information
+        DB::table('users')->where('id', auth()->user()->id)->update(['ip' => $request->ip(), 'user_agent' => $request->server('HTTP_USER_AGENT')]);
 
         return response()->json(['word_id' => $request->word_id]);
     }
@@ -106,7 +127,5 @@ class VocabularyController extends Controller
 //        $data['result']['userAgent'] = get_browser(null, true);
 
         return view('account', $data);
-
-//        return (count($hashes) > 0) ? view('account', ['result' => response()->json($hashes)]) : view('account', ['result' => 'No results']);
     }
 }
