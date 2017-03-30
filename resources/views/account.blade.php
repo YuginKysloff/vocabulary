@@ -18,6 +18,10 @@
                     <td class="table__td">User Agent</td>
                     <td class="table__td">{{ $result['userAgent'] }}</td>
                 </tr>
+                <tr class="table__td">
+                    <td class="table__td">Country</td>
+                    <td class="table__td">{{ $result['country']->country }}</td>
+                </tr>
             </tbody>
         </table>
         <p class="page__desc" id="qwe">Your favorite words in JSON format</p>
